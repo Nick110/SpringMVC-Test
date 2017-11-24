@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="userMapper">
+    <!--根据ID获取对应的值  -->
+    <select id="findUserById" parameterType="int" resultType="com.nothing.Model.User">
+        SELECT * FROM user_nothing WHERE id = #{id}
+    </select>
+    <insert id="addUser" parameterType="com.nothing.Model.User">
+        INSERT INTO tuser(login_name, real_name, password, tel, email, type) VALUES
+         (#{login_name}, #{real_name}, #{password}, #{tel}, #{email}, "1")
+    </insert>
+    <select id="selectById" parameterType="int" resultType="com.nothing.Model.User">
+        SELECT * FROM tuser WHERE id = #{id}
+    </select>
+    <select id="selectByName" parameterType="String" resultType="com.nothing.Model.User">
+        SELECT * FROM tuser WHERE login_name = #{login_name}
+    </select>
+    <select id="selectEqmtById" parameterType="int" resultType="com.nothing.Model.Equipment">
+        SELECT * FROM tequipment WHERE user_id = #{user_id}
+    </select>
+    <select id="selectAllEquipment" resultType="com.nothing.Model.Equipment">
+        SELECT * FROM tequipment
+    </select>
+    <select id="addEquipment" resultType="com.nothing.Model.Equipment">
+        INSERT INTO tequipment(name, description, code, add_time, price, place, user_id)
+         VALUES (#{name}, #{description}, #{code}, #{add_time}, #{price}, #{place}, #{user_id})
+    </select>
+</mapper>
